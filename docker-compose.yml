@@ -1,0 +1,55 @@
+
+services:
+  api1:
+    image: webapiexample
+    container_name: api1
+    build:
+      context: ./YipYip.DockerWebAPI
+      dockerfile: ./Docker/Dockerfile
+    environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_HTTP_PORTS=11000
+    expose:
+      - "11000"
+    networks:
+      - apinetwork
+  api2:
+    image: webapiexample
+    container_name: api2
+    environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_HTTP_PORTS=11000 
+    expose:
+      - "11000"
+    networks:
+      - apinetwork
+    depends_on:
+      - api1      
+
+  proxy:
+    container_name: proxy
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "12000:80"
+    networks:
+      - apinetwork
+    depends_on:
+      - api1
+  gui:
+    container_name: gui
+    build:
+      context: ./GUI
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - apinetwork
+    depends_on:
+      - proxy
+      
+
+networks:
+  apinetwork:
+    driver: bridge

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <h1>Test asp.net core web api</h1>
+  <p>Test it is alive</p>
+  <button onclick="isAlive()">Test Click Me!</button>
+  <p id="isAliveResult"></p>
+
+  <script>
+    function isAlive() {
+
+       document.getElementById("isAliveResult").innerHTML = "Sending...";
+
+      const url = 'http://localhost:12000/api/values/';
+
+      var oReq = new XMLHttpRequest();
+      oReq.addEventListener("load", reqListener);
+      oReq.open("GET", url);
+   
+      oReq.send();
+    }
+
+    function reqListener() {
+      document.getElementById("isAliveResult").innerHTML = this.responseText;
+    }
+
+  </script>
+
+</body>
+
+</html>
