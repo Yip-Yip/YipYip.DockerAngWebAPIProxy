@@ -1,5 +1,5 @@
 
-# Docker & .Net Core WebAPI using Nginx with Loading Balancing .NET 8
+# Docker & .Net Core WebAPI using Nginx with Loading Balancing .NET 9 
 - This example shows you how to create a basic **[.Net Core WebAPI](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.1)** hosted in a **[Docker](https://www.docker.com/)** **[container](https://www.docker.com/what-container)** accessed via a seperate **[NGINX](https://www.nginx.com/)** docker container reverse proxy.  There is a third docker container also using nginx to host a client test web page used to query the API.
 - This is all achieved using **[docker-compose](https://docs.docker.com/compose/)** which references the 3 **[Dockerfile's](https://docs.docker.com/engine/reference/builder/)** to build the **[images](https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/)** and create the containers.
 
@@ -40,7 +40,7 @@ $ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
 ```
 2. Go to the following in your browser:
 ``` 
-http://localhost:13000/ 
+http://localhost/ 
 ```
 3. Press 'Click Me'.  
 4. The host name of the underlying API service should be returned.
@@ -89,4 +89,6 @@ Then in the server section we set the following:
 ```
    proxy_pass         http://api_servers;
 ```
+
+Thanks to https://github.com/MikeyFriedChicken for the org
 
