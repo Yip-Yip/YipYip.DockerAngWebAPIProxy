@@ -32,31 +32,34 @@ services:
       context:  ./nginx
       dockerfile: Dockerfile
     ports:
-      - "12000:80"
-    networks:
-      - apinetwork
-    depends_on:
-      - api1
-  gui:
-    container_name: gui
-    build:
-      context: ./GUI
-      dockerfile: ./Dockerfile
-    ports:
       - "80:80"
     networks:
       - apinetwork
     depends_on:
-      - proxy
+      - api1
+      - api2
+  # gui:
+  #   container_name: gui
+  #   build:
+  #     context: ./GUI
+  #     dockerfile: ./Dockerfile
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     - apinetwork
+  #   depends_on:
+  #     - proxy
   seq:
     image: datalust/seq:latest
     container_name: seq
     environment:
       - ACCEPT_EULA=Y # Required to accept Seq's end-user license agreement
     ports:
-      - "5341:5341" # Web UI and ingestion
+      - "5341:80" # Web UI and ingestion
     networks:
-      - apinetwork  
+      - apinetwork
+    depends_on:
+      - proxy  
       
 
 networks:
