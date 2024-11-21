@@ -1,19 +1,19 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY ["MikeyFriedChicken.DockerWebAPI.Example.csproj", "./"]
-RUN dotnet restore "MikeyFriedChicken.DockerWebAPI.Example.csproj"
+COPY ["YipYip.DockerWebAPI.csproj", "./"]
+RUN dotnet restore "YipYip.DockerWebAPI.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "MikeyFriedChicken.DockerWebAPI.Example.csproj" -c Release -o /app/build
+RUN dotnet build "YipYip.DockerWebAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MikeyFriedChicken.DockerWebAPI.Example.csproj" -c Release -o /app/publish
+RUN dotnet publish "YipYip.DockerWebAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MikeyFriedChicken.DockerWebAPI.Example.dll"]
+ENTRYPOINT ["dotnet", "YipYip.DockerWebAPI.dll"]
