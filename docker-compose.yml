@@ -54,8 +54,8 @@ services:
     container_name: seq
     environment:
       - ACCEPT_EULA=Y # Required to accept Seq's end-user license agreement
-    ports:
-      - "5341:80" # Web UI and ingestion
+    expose:
+      - "80" # Web UI and ingestion
     networks:
       - apinetwork
     depends_on:
