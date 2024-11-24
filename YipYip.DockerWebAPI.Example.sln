@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{578E25D0-AD8
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2D678DAA-4848-460C-9797-636212CED663}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "frontend", "frontend\frontend.esproj", "{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,12 @@ Global
 		{2D678DAA-4848-460C-9797-636212CED663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D678DAA-4848-460C-9797-636212CED663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D678DAA-4848-460C-9797-636212CED663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
