@@ -46,31 +46,20 @@ http://localhost/
 4. The host name of the underlying API service should be returned.
 
 ## Configuration & How it works
-### [Docker Compose - links](https://docs.docker.com/compose/compose-file/#links)
-Inside docker-compose.yml we link the nginx proxy service to the API containers using the following:
-```
-    links:
-     - api1:api1
-     - api2:api2
-     - api3:api3
-     - api4:api4
-     - api5:api5
-```
-Note: This is not required unless alias of service names are needed. However, helpful to include.
 
 
 ### [Docker Compose - expose](https://docs.docker.com/compose/compose-file/#expose)
-Inside docker-compose.yml each api uses 'expose' to make the service via the exposed port (11000) available to the linked services.  Note: this does not publish the port to the host machine.
+Inside docker-compose.yml each api uses 'expose' to make the service via the exposed port (8080) available to the linked services.  Note: this does not publish the port to the host machine.
 ```
     expose:
-      - "11000"
+      - "8080"
 ```
 
 ### [Docker Compose - ports](https://docs.docker.com/compose/compose-file/#ports)
-Inside docker-compose.yml each api the 'nginx proxy' and 'gui' services expose their internal port of 80 to the host ports 12000 & 13000 respectivly. 
+Inside docker-compose.yml each api the 'nginx proxy' service expose their internal port of 80 to the host port 80. 
 ```
     ports:
-      - "12000:80"
+      - "80:80"
 ```
 
 ### [NGINX Load Balancing](http://nginx.org/en/docs/http/load_balancing.html)
@@ -78,11 +67,9 @@ Inside nginx.conf we have configured requests to 'round robin' (default when alt
 ```
     links:
     upstream api_servers {
-		server api1:11000;
-		server api2:11000;
-		server api3:11000;
-		server api4:11000;
-		server api5:11000;
+		server api1:8080;
+		server api2:8080;
+
     }
 ```
 Then in the server section we set the following:
