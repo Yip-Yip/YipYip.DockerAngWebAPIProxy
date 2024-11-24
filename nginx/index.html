@@ -4,9 +4,13 @@
 
   <h1>Test asp.net core web api</h1>
   <p>Test it is alive</p>
-  <button onclick="isAlive()">Test Click Me!</button>
+  <button onclick="isAlive()">Test Api Click Me!</button>
   <p id="isAliveResult"></p>
 
+   <!-- Wrap the button in an anchor tag to make it a hyperlink -->
+   <a href="http://localhost/app" target="_blank">
+    <button>Angular App Click Me!</button>
+  </a>
   <script>
     function isAlive() {
 

@@ -4,7 +4,7 @@ FROM nginx
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Copy built Angular app
-COPY frontend/dist/frontend /usr/share/nginx/html
+COPY nginx/index.html /usr/share/nginx/html/index.html
 
 EXPOSE 80
 
