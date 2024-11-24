@@ -1,16 +1,13 @@
 FROM nginx
 
 # Copy configuration and index.html
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY index.html /usr/share/nginx/html/index.html
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Verify files are copied correctly
-RUN ls -l /etc/nginx/nginx.conf && \
-    ls -l /usr/share/nginx/html/index.html && \
-    cat /usr/share/nginx/html/index.html
+# Copy built Angular app
+COPY frontend/dist/frontend /usr/share/nginx/html
 
-# Set correct permissions
-RUN chmod 644 /usr/share/nginx/html/index.html
+EXPOSE 80
+
 
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]

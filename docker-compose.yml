@@ -1,5 +1,14 @@
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run build
+
   api1:
     image: webapiexample
     container_name: api1
@@ -29,13 +38,14 @@ services:
   proxy:
     container_name: proxy
     build:
-      context:  ./nginx
-      dockerfile: Dockerfile
+      context:  .
+      dockerfile: nginx/Dockerfile
     ports:
       - "80:80"
     networks:
       - apinetwork
     depends_on:
+      - frontend
       - api1
       - api2
   # gui:
