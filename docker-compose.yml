@@ -2,11 +2,11 @@
 services:
   frontend:
     build:
-      context: ./frontend
+      context: ./web
       dockerfile: Dockerfile
     container_name: frontend
     volumes:
-      - ./frontend:/app
+      - ./web:/app
       - /app/node_modules
     
     expose:
@@ -15,7 +15,7 @@ services:
       - apinetwork
 
   api1:
-    image: webapiexample
+    image: apiexample
     container_name: api1
     build:
       context: ./YipYip.DockerWebAPI
@@ -28,7 +28,7 @@ services:
     networks:
       - apinetwork
   api2:
-    image: webapiexample
+    image: apiexample
     container_name: api2
     environment:
           - ASPNETCORE_ENVIRONMENT=Development
