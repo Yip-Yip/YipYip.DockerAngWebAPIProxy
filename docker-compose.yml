@@ -50,8 +50,8 @@ services:
       - "80:80"
       - "81:81"
              # Exposes the reverse proxy to the host
-    volumes:
-      - ./proxy/nginx-reverse-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    # volumes:
+    #   - ./nginx/nginx-reverse-proxy.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - apinetwork
     depends_on:      
