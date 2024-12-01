@@ -1,11 +1,25 @@
 
 services:
+  ang-app:
+    build:
+      context: ./ang-app
+      dockerfile: Dockerfile.angular
+    container_name: ang-app
+    image: angular-app:latest
+    volumes:
+      - ./ang-app:/app     
+    
+    expose:
+      - "80"
+    networks:
+      - apinetwork
+
   api1:
-    image: webapiexample
+    image: apiexample
     container_name: api1
     build:
       context: ./YipYip.DockerWebAPI
-      dockerfile: Docker/Dockerfile
+      dockerfile: Docker/Dockerfile.angular
     environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_HTTP_PORTS=8080
@@ -14,7 +28,7 @@ services:
     networks:
       - apinetwork
   api2:
-    image: webapiexample
+    image: apiexample
     container_name: api2
     environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -26,40 +40,45 @@ services:
     depends_on:
       - api1      
 
-  proxy:
+  proxy:    
+    image: reverse-proxy:latest
     container_name: proxy
     build:
-      context:  ./nginx
-      dockerfile: Dockerfile
+      context: ./nginx
+      dockerfile: Dockerfile.proxy
     ports:
       - "80:80"
+      - "81:81"
+             # Exposes the reverse proxy to the host
+    # volumes:
+    #   - ./nginx/nginx-reverse-proxy.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - apinetwork
-    depends_on:
+    depends_on:      
+      - ang-app
       - api1
       - api2
-  # gui:
-  #   container_name: gui
-  #   build:
-  #     context: ./GUI
-  #     dockerfile: ./Dockerfile
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     - apinetwork
-  #   depends_on:
-  #     - proxy
-  seq:
+ 
+  seqlog:
     image: datalust/seq:latest
-    container_name: seq
+    container_name: seqlog
+    restart: always
+    build:
+      context: ./seq  # Path to directory containing Dockerfile.seqlog
+      dockerfile: Dockerfile.seq
     environment:
-      - ACCEPT_EULA=Y # Required to accept Seq's end-user license agreement
-    expose:
-      - "80" # Web UI and ingestion
+      ACCEPT_EULA: "Y"
+      #SEQ_API_LISTENURIS: http://seqlog:5341  # Correctly formatted URI for listening on port 8000
+      #SEQ_SERVER_URL: http://seqlog:80 
+      # SEQ_BASE_URI: /seqlog
+    depends_on:
+      - proxy
+    ports:
+      - 8000:80      
+      - 5341:5341
     networks:
       - apinetwork
-    depends_on:
-      - proxy  
+  
       
 
 networks:
