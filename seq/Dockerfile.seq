@@ -1,0 +1,13 @@
+# Dockerfile.seqlog
+
+# Use the official Seq image as the base image
+FROM datalust/seq:2024.1
+
+# Expose port 8000 for the Seq GUI
+EXPOSE 80
+
+# Optional: Set an environment variable for the Seq base URI
+# to reflect the /seqlog path if accessed via a proxy
+ENV SEQ_BASE_URI /seq
+
+# Set the entry point to the default command

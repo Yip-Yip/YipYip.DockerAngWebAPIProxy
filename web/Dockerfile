@@ -20,7 +20,7 @@ RUN npm run build -- --output-path=./dist/out --configuration=production
 FROM nginx:1.23-alpine
 
 # Copy the built Angular app from the builder stage to the NGINX html directory
-COPY --from=builder /app/dist/out/browser/ /usr/share/nginx/html
+COPY --from=builder /app/dist/out/browser/ /usr/share/nginx/html/web
 
 # Expose port 80
 EXPOSE 80

@@ -1,0 +1,8 @@
+# Dockerfile for Angular App
+FROM nginx:alpine
+
+# Copy built Angular files to NGINX's HTML directory
+COPY dist/ang-app/browser /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80

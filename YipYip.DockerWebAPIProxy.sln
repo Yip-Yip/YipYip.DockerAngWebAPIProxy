@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{578E25D0-AD8
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2D678DAA-4848-460C-9797-636212CED663}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "frontend", "frontend\frontend.esproj", "{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "web", "web\frontend.esproj", "{6FDAD4EA-A13E-4C78-9D2F-9444BB5854A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

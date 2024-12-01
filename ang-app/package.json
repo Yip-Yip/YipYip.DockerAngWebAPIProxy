@@ -1,13 +1,12 @@
 {
-  "name": "web",
+  "name": "ang-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host=127.0.0.1",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "prod": "ng build --configuration=production"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +20,7 @@
     "@angular/router": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2",
-    "jest-editor-support": "*"
+    "zone.js": "~0.14.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.7",
